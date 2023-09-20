@@ -1,13 +1,15 @@
 {% extends "base.html" %}
+{% block title %}Blogs - BlogFarm{% endblock title %}
+{% block blogactive %}active{% endblock blogactive %}
 {% block body %}
 <h1 class="text-center">Welcome to Home of Blogs</h1>
 {% for i in blogs %}
 <div class="card my-3 mx-auto" style="width: 50rem;">
-    <img src="..." class="card-img-top" alt="...">
+    {% comment %} <img src="..." class="card-img-top" alt="..."> {% endcomment %}
     <div class="card-body">
       <h5 class="card-title">{{i.title}}</h5>
       <p class="card-text">{{i.content|slice:345}}...</p>
-      <a href="./blogpost/{i.slug}" class="btn btn-primary">Read More</a>
+      <a href="./blogpost/{{i.slug}}" class="btn btn-primary">Read More</a>
     </div>
 </div>
 
