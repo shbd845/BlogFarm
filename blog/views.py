@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from blog.models import Blog,Contact,Member
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def home(request):
@@ -45,6 +45,7 @@ def login(request):
              pwd=request.POST.get("password")
              user = authenticate(username=username, password=pwd)
              if user is not None:
+                   login(request, user)
                    context={"success":"true"}
              else:
                    context={"success":"error"}
@@ -65,4 +66,10 @@ def signup(request):
              user.save()
              context={"success":True}
      return render(request,'signup.html',context)
+
+def logout_view(request):
+    context={"success":False}
+    logout(request)
+    context={"success":True}
+    return render(request,"index.html",context)
 
