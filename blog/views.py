@@ -7,11 +7,11 @@ def blog(request):
     allblogs=Blog.objects.all()
     context={'blogs':allblogs}
     return render(request,'bloghome.html',context)
-def blogpost(request,slug):
+def blogdetail(request,slug):
     # return HttpResponse(f"this is the {slug}")
     blog=Blog.objects.filter(slug=slug).first()
     context={'blogs':blog}
-    return render(request,'blogpost.html',context)
+    return render(request,'blog.html',context)
 def contact(request):
         context={"success":False}
         if request.method=="POST":
