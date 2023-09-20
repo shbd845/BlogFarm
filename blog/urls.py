@@ -23,5 +23,8 @@ urlpatterns = [
     path('blog', views.blog, name='blog'),
     path('blog/<str:slug>', views.blogdetail, name='blog'),
     path('contact', views.contact, name='contact'),
-    path('addblog', views.addblog, name='blog')
+    path('addblog', views.addblog, name='blog'),
+    path('login', views.login, name='login'),
+    path('signup', views.signup, name='signup')
+
 ]

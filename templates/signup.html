@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Contact Us - BlogFarm{% endblock title %}
+{% block signupactive %}active{% endblock signupactive %}
+{% block body %}
+
+<div class="text-center my-4">
+    <h1>
+        Wanna join BlogFarm?
+    </h1>
+    <h3>
+        Sign-up and Register to join the community of brightest people 
+    </h3>
+</div>
+<div style="font-size: medium;">
+    <form action="/signup" method="POST">
+        {% if success %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Success!!</strong> Your profile has been registered. 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="name" name="firstname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="name" name="lastname" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">UserName</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Please enter UserName carefully, it cannot be changed afterwards</div>
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+          </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+</div>
+{% endblock body %}

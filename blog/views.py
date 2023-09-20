@@ -1,5 +1,8 @@
 from django.shortcuts import render,HttpResponse
-from blog.models import Blog,Contact
+from blog.models import Blog,Contact,Member
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+
 # Create your views here.
 def home(request):
     return render(request,'index.html')
@@ -34,4 +37,32 @@ def addblog(request):
              context={"success":True}
     return render(request,'addblog.html',context)
 
+def login(request):
+     context={"success":False}
+     if request.method=="POST":
+             username=request.POST.get("username")
+             email=request.POST.get("email")
+             pwd=request.POST.get("password")
+             user = authenticate(username=username, password=pwd)
+             if user is not None:
+                   context={"success":"true"}
+             else:
+                   context={"success":"error"}
+             
+     return render(request,'login.html',context)
+
+def signup(request):
+     context={"success":False}
+     if request.method=="POST":
+             firstname=request.POST.get("firstname")
+             lastname=request.POST.get("lastname")
+             username=request.POST.get("username")
+             email=request.POST.get("email")
+             pwd=request.POST.get("password")
+             user = User.objects.create_user(username,email,pwd)
+             user.first_name=firstname
+             user.last_name=lastname
+             user.save()
+             context={"success":True}
+     return render(request,'signup.html',context)
 
