@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse
-from blog.models import Blog
+from blog.models import Blog,Contact
 # Create your views here.
 def home(request):
     return render(request,'index.html')
@@ -13,6 +13,15 @@ def blogpost(request,slug):
     context={'blogs':blog}
     return render(request,'blogpost.html',context)
 def contact(request):
-        return render(request,'contact.html')
+        context={"success":False}
+        if request.method=="POST":
+             name=request.POST.get("name")
+             email=request.POST.get("email")
+             query=request.POST.get("query")
+             instance= Contact(name=name,email=email,query=query)
+             instance.save()
+             context={"success":True}
+        
+        return render(request,'contact.html',context)
 
 
