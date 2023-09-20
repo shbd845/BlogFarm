@@ -23,5 +23,15 @@ def contact(request):
              context={"success":True}
         
         return render(request,'contact.html',context)
+def addblog(request):
+    context={"successs":False}
+    if request.method=="POST":
+             title=request.POST.get("title")
+             content=request.POST.get("content")
+             slug=request.POST.get("slug")
+             instance= Blog(title=title,content=content,slug=slug)
+             instance.save()
+             context={"success":True}
+    return render(request,'addblog.html',context)
 
 
