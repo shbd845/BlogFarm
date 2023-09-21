@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponse
 from blog.models import Blog,Contact,Member
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 def home(request):
@@ -76,3 +77,9 @@ def logout_view(request):
     context={"success":"logout"}
     return render(request,"index.html",context)
 
+
+@staff_member_required()
+def del_edit_view(request):
+      allblogs=Blog.objects.all()
+      context={'blogs':allblogs}
+      return render(request,"delete_edit.html",context)
