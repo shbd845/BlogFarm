@@ -7,9 +7,10 @@
 <div class="card my-3 mx-auto" style="width: 50rem;">
     {% comment %} <img src="..." class="card-img-top" alt="..."> {% endcomment %}
     <div class="card-body">
-      <h5 class="card-title">{{i.title}}</h5>
+      <h4 class="card-title text-center">{{i.title}}</h4>
       <p class="card-text">{{i.content|slice:345}}...</p>
       <a href="./blog/{{i.slug}}" class="btn btn-primary">Read More</a>
+      <h6 style="text-align: right;">{{i.time}}</h6>
     </div>
 </div>
 
