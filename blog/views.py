@@ -28,16 +28,19 @@ def contact(request):
         return render(request,'contact.html',context)
 def addblog(request):
     context={"successs":False}
-    if request.method=="POST":
-             title=request.POST.get("title")
-             content=request.POST.get("content")
-             slug=request.POST.get("slug")
-             instance= Blog(title=title,content=content,slug=slug)
-             instance.save()
-             context={"success":True}
-    return render(request,'addblog.html',context)
+    if request.user.is_authenticated:          
+        if request.method=="POST":
+                    title=request.POST.get("title")
+                    content=request.POST.get("content")
+                    slug=request.POST.get("slug")
+                    instance= Blog(title=title,content=content,slug=slug)
+                    instance.save()
+                    context={"success":True}
+        return render(request,'addblog.html',context)
+    context={"success":"login"}
+    return render(request,"login.html",context)
 
-def login(request):
+def login_view(request):
      context={"success":False}
      if request.method=="POST":
              username=request.POST.get("username")
@@ -70,6 +73,6 @@ def signup(request):
 def logout_view(request):
     context={"success":False}
     logout(request)
-    context={"success":True}
+    context={"success":"logout"}
     return render(request,"index.html",context)
 

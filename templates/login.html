@@ -23,6 +23,11 @@
                 <strong>Error!!</strong> Entered credentials are do not match.Please re-enter carefully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+        {% elif success == "login" %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Error!!</strong> Log-in first to post blog. 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         {% endif %}
         
         {% csrf_token %}
